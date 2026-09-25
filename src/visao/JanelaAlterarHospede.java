@@ -59,13 +59,14 @@ public class JanelaAlterarHospede extends JFrame {
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-		setBounds(100, 100, 600, 500);
+		setBounds(100, 100, 400, 500);
 
 		contentPane = new JPanel();
 
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
+		setLocationRelativeTo(null);
 
 		contentPane.setLayout(new MigLayout("", "[][][][][][grow]", "[][][][][][][][][][][][][][][]"));
 	}

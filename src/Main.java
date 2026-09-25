@@ -14,6 +14,7 @@ public class Main {
 				try {
 
 					Janela frame = new Janela();
+					
 					frame.setVisible(true);
 
 				} catch (Exception e) {
