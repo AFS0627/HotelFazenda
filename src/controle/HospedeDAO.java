@@ -1,4 +1,3 @@
-
 package controle;
 
 import java.io.File;
@@ -15,7 +14,9 @@ import modelo.Hospede;
 public class HospedeDAO {
 
 	private File obterPastaPrograma() {
+
 		try {
+
 			File local = new File(HospedeDAO.class.getProtectionDomain().getCodeSource().getLocation().toURI());
 
 			if (local.isFile()) {
@@ -25,6 +26,7 @@ public class HospedeDAO {
 			return local;
 
 		} catch (URISyntaxException erro) {
+
 			erro.printStackTrace();
 
 			return new File(System.getProperty("user.dir"));
@@ -52,6 +54,7 @@ public class HospedeDAO {
 
 			System.out.println("Erro ao salvar o arquivo:");
 			erro.printStackTrace();
+
 			System.out.println("Local: " + arq.getAbsolutePath());
 		}
 	}

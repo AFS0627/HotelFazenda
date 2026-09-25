@@ -4,131 +4,133 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public class Hospede implements Serializable {
-    
-    private String nome;
-    private LocalDate nascimento;
-    private String nacionalidade;
-    private String passaporte;
-    private LocalDate checkIn;
-    private LocalDate checkOut;
-    private int numeroQuarto;
-    private double totalPago;
-    private String email;
-    private String telefone;
-    private String endereco;
-    private int numeroPessoas;
-    private String solicitacoesEspeciais;
-    private int avaliacao;
 
-    public String getNome() {
-        return nome;
-    }
+	private static final long serialVersionUID = 1L;
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	private String nome;
+	private LocalDate nascimento;
+	private String nacionalidade;
+	private String passaporte;
+	private LocalDate checkIn;
+	private LocalDate checkOut;
+	private int numeroQuarto;
+	private double totalPago;
+	private String email;
+	private String telefone;
+	private String endereco;
+	private int numeroPessoas;
+	private String solicitacoesEspeciais;
+	private int avaliacao;
 
-    public LocalDate getNascimento() {
-        return nascimento;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public void setNascimento(LocalDate nascimento) {
-        this.nascimento = nascimento;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public String getNacionalidade() {
-        return nacionalidade;
-    }
+	public LocalDate getNascimento() {
+		return nascimento;
+	}
 
-    public void setNacionalidade(String nacionalidade) {
-        this.nacionalidade = nacionalidade;
-    }
+	public void setNascimento(LocalDate nascimento) {
+		this.nascimento = nascimento;
+	}
 
-    public String getPassaporte() {
-        return passaporte;
-    }
+	public String getNacionalidade() {
+		return nacionalidade;
+	}
 
-    public void setPassaporte(String passaporte) {
-        this.passaporte = passaporte;
-    }
+	public void setNacionalidade(String nacionalidade) {
+		this.nacionalidade = nacionalidade;
+	}
 
-    public LocalDate getCheckIn() {
-        return checkIn;
-    }
+	public String getPassaporte() {
+		return passaporte;
+	}
 
-    public void setCheckIn(LocalDate checkIn) {
-        this.checkIn = checkIn;
-    }
+	public void setPassaporte(String passaporte) {
+		this.passaporte = passaporte;
+	}
 
-    public LocalDate getCheckOut() {
-        return checkOut;
-    }
+	public LocalDate getCheckIn() {
+		return checkIn;
+	}
 
-    public void setCheckOut(LocalDate checkOut) {
-        this.checkOut = checkOut;
-    }
+	public void setCheckIn(LocalDate checkIn) {
+		this.checkIn = checkIn;
+	}
 
-    public int getNumeroQuarto() {
-        return numeroQuarto;
-    }
+	public LocalDate getCheckOut() {
+		return checkOut;
+	}
 
-    public void setNumeroQuarto(int numeroQuarto) {
-        this.numeroQuarto = numeroQuarto;
-    }
+	public void setCheckOut(LocalDate checkOut) {
+		this.checkOut = checkOut;
+	}
 
-    public double getTotalPago() {
-        return totalPago;
-    }
+	public int getNumeroQuarto() {
+		return numeroQuarto;
+	}
 
-    public void setTotalPago(double totalPago) {
-        this.totalPago = totalPago;
-    }
+	public void setNumeroQuarto(int numeroQuarto) {
+		this.numeroQuarto = numeroQuarto;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public double getTotalPago() {
+		return totalPago;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setTotalPago(double totalPago) {
+		this.totalPago = totalPago;
+	}
 
-    public String getTelefone() {
-        return telefone;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public String getEndereco() {
-        return endereco;
-    }
+	public String getTelefone() {
+		return telefone;
+	}
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
 
-    public int getNumeroPessoas() {
-        return numeroPessoas;
-    }
+	public String getEndereco() {
+		return endereco;
+	}
 
-    public void setNumeroPessoas(int numeroPessoas) {
-        this.numeroPessoas = numeroPessoas;
-    }
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
 
-    public String getSolicitacoesEspeciais() {
-        return solicitacoesEspeciais;
-    }
+	public int getNumeroPessoas() {
+		return numeroPessoas;
+	}
 
-    public void setSolicitacoesEspeciais(String solicitacoesEspeciais) {
-        this.solicitacoesEspeciais = solicitacoesEspeciais;
-    }
+	public void setNumeroPessoas(int numeroPessoas) {
+		this.numeroPessoas = numeroPessoas;
+	}
 
-    public int getAvaliacao() {
-        return avaliacao;
-    }
+	public String getSolicitacoesEspeciais() {
+		return solicitacoesEspeciais;
+	}
 
-    public void setAvaliacao(int avaliacao) {
-        this.avaliacao = avaliacao;
-    }
+	public void setSolicitacoesEspeciais(String solicitacoesEspeciais) {
+		this.solicitacoesEspeciais = solicitacoesEspeciais;
+	}
+
+	public int getAvaliacao() {
+		return avaliacao;
+	}
+
+	public void setAvaliacao(int avaliacao) {
+		this.avaliacao = avaliacao;
+	}
 }

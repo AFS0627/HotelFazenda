@@ -1,72 +1,38 @@
-# HotelFazenda
-
 # 🏨 Sistema de Gerenciamento de Hóspedes
 
-Sistema desktop desenvolvido em **Java** para gerenciamento de hóspedes de um estabelecimento hoteleiro.
+Sistema desktop desenvolvido em **Java** utilizando **Java Swing**, com arquitetura baseada no padrão **MVC (Model-View-Controller)**.
 
-O projeto permite cadastrar, visualizar, alterar e excluir hóspedes, além de armazenar as informações de forma persistente em arquivo. A aplicação possui uma interface gráfica desenvolvida com **Java Swing** e utiliza **MigLayout** para organização dos componentes.
+O projeto permite realizar o gerenciamento de hóspedes de um hotel, incluindo cadastro, consulta, alteração e exclusão de registros, além da persistência dos dados em arquivo.
 
-## 📌 Sobre o projeto
+---
 
-O sistema foi desenvolvido com o objetivo de praticar conceitos de **Programação Orientada a Objetos**, desenvolvimento de interfaces gráficas e persistência de dados em Java.
+## 📋 Sobre o Projeto
 
-Cada hóspede possui informações pessoais, dados da reserva, informações de contato e uma avaliação.
+O sistema foi desenvolvido com o objetivo de fornecer uma interface gráfica simples para o gerenciamento de informações de hóspedes.
 
-Os dados são armazenados localmente por meio de **serialização de objetos Java**, utilizando um arquivo `dados.dat`.
+Cada hóspede possui informações pessoais, dados de hospedagem, contato, pagamento e avaliação.
+
+O projeto utiliza o padrão **MVC**, separando as responsabilidades entre:
+
+* **Model** — representa os dados e entidades do sistema.
+* **View** — responsável pela interface gráfica.
+* **Controller** — concentra as regras de negócio, validações e comunicação entre a interface e os dados.
+* **DAO** — responsável pela persistência dos dados.
+
+---
 
 ## ✨ Funcionalidades
 
-* ➕ Cadastro de hóspedes
-* 📋 Visualização dos hóspedes em tabela
-* ✏️ Alteração dos dados de um hóspede
-* 🗑️ Exclusão de hóspedes
-* ⭐ Avaliação do hóspede de 0 a 5
-* 🧹 Limpeza automática dos campos após o cadastro
-* 💾 Persistência dos dados em arquivo
-* 📅 Manipulação de datas utilizando `LocalDate`
-* 🔄 Carregamento automático dos dados ao iniciar o sistema
-* 💽 Salvamento dos dados ao fechar a aplicação
+### 👤 Cadastro de hóspedes
 
-A tela principal possui campos para nome, nascimento, nacionalidade, passaporte, check-in, check-out, quarto, valor pago, e-mail, telefone, endereço, número de pessoas, solicitações especiais e avaliação.
-
-## 🛠️ Tecnologias utilizadas
-
-* **Java**
-* **Java Swing**
-* **MigLayout**
-* **Java Serialization**
-* **LocalDate / DateTimeFormatter**
-* **Eclipse IDE**
-
-## 🏗️ Estrutura do projeto
-
-O projeto segue uma organização baseada na separação entre **modelo, controle e visão**:
-
-```text
-src/
-├── modelo/
-│   └── Hospede.java
-│
-├── controle/
-│   └── HospedeDAO.java
-│
-└── visao/
-    ├── Janela.java
-    └── JanelaAlterarHospede.java
-```
-
-### 📦 Modelo
-
-A classe `Hospede` representa os dados de cada hóspede.
-
-Entre seus atributos estão:
+Permite cadastrar hóspedes informando:
 
 * Nome
 * Data de nascimento
 * Nacionalidade
 * Passaporte
-* Check-in
-* Check-out
+* Data de check-in
+* Data de check-out
 * Número do quarto
 * Total pago
 * E-mail
@@ -76,178 +42,393 @@ Entre seus atributos estão:
 * Solicitações especiais
 * Avaliação
 
-A classe implementa `Serializable`, permitindo que os objetos sejam gravados diretamente em arquivo.
+### 🔎 Visualização
 
-### 💾 Controle
+Os hóspedes cadastrados são apresentados em uma tabela na interface gráfica.
 
-A classe `HospedeDAO` é responsável pela persistência dos dados.
+### ✏️ Alteração
 
-Ela realiza principalmente duas operações:
+Permite selecionar um hóspede cadastrado e alterar seus dados.
 
-```java
-escreverArquivo(lista, "dados.dat");
-```
+### 🗑️ Exclusão
 
-e
+Permite remover um hóspede selecionado da lista.
 
-```java
-lerArquivo("dados.dat");
-```
+### 💾 Persistência
 
-Dessa forma, a lista de hóspedes é salva e posteriormente recuperada quando o sistema é iniciado.
-
-### 🖥️ Visão
-
-A interface gráfica é construída utilizando **Java Swing**.
-
-A classe `Janela` representa a tela principal do sistema e contém os campos de cadastro, tabela e botões de operação.
-
-As principais operações disponíveis são:
-
-```text
-Adicionar
-Alterar
-Excluir
-Fechar
-```
-
-## 🔄 Funcionamento
-
-Ao iniciar a aplicação, os dados existentes são carregados do arquivo `dados.dat`.
-
-### Cadastro
-
-O usuário preenche os dados do hóspede e seleciona a avaliação.
-
-Ao clicar em **Adicionar**, um novo objeto `Hospede` é criado e inserido na lista:
-
-```java
-Hospede novoHospede = new Hospede();
-listaHospedes.add(novoHospede);
-```
-
-Após o cadastro, a tabela é atualizada para exibir o novo registro.
-
-### Alteração
-
-O usuário seleciona um registro na tabela e utiliza o botão **Alterar**.
-
-Os dados do hóspede selecionado são enviados para uma tela específica de alteração, onde podem ser modificados.
-
-### Exclusão
-
-O registro selecionado na tabela pode ser removido através do botão **Excluir**.
-
-### Persistência
-
-Ao fechar o sistema, a lista de hóspedes é gravada no arquivo:
+Os dados são armazenados localmente no arquivo:
 
 ```text
 dados.dat
 ```
 
-A aplicação também realiza o salvamento no evento de fechamento da janela.
+A persistência utiliza **serialização de objetos Java**, permitindo que os dados permaneçam disponíveis após o encerramento do programa.
 
-## 📅 Formato das datas
+### ✅ Validação
 
-As datas são informadas no formato:
+O sistema realiza validações antes de cadastrar ou alterar um hóspede, verificando, entre outros:
 
-```text
-dd/MM/yyyy
-```
+* Campos obrigatórios
+* Formato das datas
+* Datas de check-in e check-out
+* Número do quarto
+* Valor pago
+* E-mail
+* Número de pessoas
+* Avaliação
+* Valores numéricos
 
-Exemplo:
-
-```text
-25/09/2026
-```
-
-O projeto utiliza `DateTimeFormatter` para realizar a conversão entre texto e `LocalDate`.
-
-## 🚀 Como executar
-
-### 1. Clone o repositório
-
-```bash
-git clone https://github.com/SEU-USUARIO/SEU-REPOSITORIO.git
-```
-
-### 2. Abra o projeto
-
-Abra o projeto em uma IDE compatível com Java, como:
-
-* Eclipse
-* IntelliJ IDEA
-* NetBeans
-
-### 3. Verifique a dependência
-
-O projeto utiliza a biblioteca **MigLayout**. Certifique-se de que ela esteja disponível no classpath do projeto.
-
-### 4. Execute a aplicação
-
-Execute a classe:
-
-```text
-visao.Janela
-```
-
-A interface gráfica será aberta e o arquivo `dados.dat` será utilizado para armazenar os registros.
-
-## 💾 Armazenamento dos dados
-
-O sistema utiliza **serialização de objetos** para armazenar a lista de hóspedes.
-
-O arquivo utilizado é:
-
-```text
-dados.dat
-```
-
-Por isso, o arquivo é criado/atualizado durante a utilização do sistema e deve ser mantido caso os dados cadastrados precisem ser preservados.
-
-## 🎯 Conceitos praticados
-
-Este projeto envolve diversos conceitos importantes de Java:
-
-* Programação Orientada a Objetos
-* Classes e objetos
-* Encapsulamento
-* Getters e setters
-* Herança de interfaces (`Serializable`)
-* Collections (`ArrayList`)
-* Serialização de objetos
-* Persistência de dados
-* Java Swing
-* Eventos e `ActionListener`
-* Tabelas com `JTable`
-* `DefaultTableModel`
-* Manipulação de datas
-* Organização em pacotes
-* Separação entre modelo, controle e visão
-
-## 📷 Interface
-
-A aplicação possui uma tela principal para gerenciamento dos hóspedes, contendo formulário de cadastro e uma tabela para visualização dos registros.
-
-> Adicione aqui screenshots da aplicação para deixar o repositório mais completo.
-
-Exemplo:
-
-```text
-docs/
-├── tela-principal.png
-└── tela-alteracao.png
-```
-
-## 📚 Objetivo acadêmico
-
-Projeto desenvolvido com finalidade acadêmica para aplicação prática de conceitos de desenvolvimento de sistemas desktop utilizando Java.
+Quando um dado é inválido, o sistema informa o problema através de uma mensagem na interface.
 
 ---
 
-## 👨‍💻 Autor
+## 🏗️ Arquitetura
 
-**Arthur de França Schoening**
+O projeto utiliza uma estrutura baseada em **MVC**:
 
-Desenvolvido utilizando **Java + Swing**.
+```text
+src/
+│
+├── modelo/
+│   └── Hospede.java
+│
+├── controle/
+│   ├── HospedeController.java
+│   └── HospedeDAO.java
+│
+└── visao/
+    ├── Janela.java
+    └── JanelaAlterarHospede.java
+```
+
+### Model
+
+Responsável pela representação dos dados do sistema.
+
+```text
+modelo/
+└── Hospede.java
+```
+
+A classe `Hospede` representa um hóspede e contém seus atributos, getters e setters.
+
+A classe implementa `Serializable` para permitir a persistência dos objetos.
+
+---
+
+### Controller
+
+Responsável pela lógica da aplicação.
+
+```text
+controle/
+└── HospedeController.java
+```
+
+O `HospedeController` realiza operações como:
+
+* Adicionar hóspedes
+* Excluir hóspedes
+* Buscar hóspedes
+* Alterar hóspedes
+* Validar informações
+* Preparar os dados para a tabela
+* Solicitar a persistência dos dados
+
+A validação dos campos é realizada no Controller, mantendo a View mais focada na interface gráfica.
+
+---
+
+### DAO
+
+Responsável pela comunicação com o arquivo de dados.
+
+```text
+controle/
+└── HospedeDAO.java
+```
+
+O `HospedeDAO` realiza:
+
+* Leitura dos dados
+* Escrita dos dados
+* Criação/acesso ao arquivo `dados.dat`
+
+A persistência é realizada através de `ObjectInputStream` e `ObjectOutputStream`.
+
+---
+
+### View
+
+Responsável pela interface gráfica do sistema.
+
+```text
+visao/
+├── Janela.java
+└── JanelaAlterarHospede.java
+```
+
+A View utiliza **Java Swing** para construção da interface.
+
+Ela é responsável principalmente por:
+
+* Exibir os componentes gráficos
+* Capturar os dados digitados pelo usuário
+* Exibir a tabela
+* Acionar as operações do Controller
+* Atualizar a interface após as operações
+
+---
+
+## 🛠️ Tecnologias utilizadas
+
+| Tecnologia         | Utilização                           |
+| ------------------ | ------------------------------------ |
+| Java 11            | Linguagem e plataforma               |
+| Java Swing         | Interface gráfica                    |
+| MVC                | Organização da aplicação             |
+| Java Serialization | Persistência dos dados               |
+| MigLayout          | Gerenciamento de layout da interface |
+| Eclipse            | Ambiente de desenvolvimento          |
+
+---
+
+## ☕ Requisitos
+
+Para executar o projeto é necessário ter instalado:
+
+* **Java Development Kit (JDK) 11**
+* **Eclipse IDE** ou outra IDE compatível com projetos Java
+* Biblioteca **MigLayout**
+
+Verifique a versão do Java instalada:
+
+```bash
+java -version
+```
+
+O projeto deve utilizar Java 11.
+
+---
+
+## ▶️ Executando o projeto
+
+### 1. Clonar o repositório
+
+```bash
+git clone URL_DO_REPOSITORIO
+```
+
+Entre na pasta:
+
+```bash
+cd NOME_DO_PROJETO
+```
+
+### 2. Abrir no Eclipse
+
+No Eclipse:
+
+```text
+File
+→ Import
+→ Existing Projects into Workspace
+```
+
+Selecione a pasta do projeto.
+
+### 3. Configurar o Java 11
+
+Verifique se o projeto está utilizando o **JDK 11**:
+
+```text
+Project
+→ Properties
+→ Java Build Path
+→ Libraries
+```
+
+e também:
+
+```text
+Project
+→ Properties
+→ Java Compiler
+```
+
+Configure o nível de compilação para:
+
+```text
+11
+```
+
+### 4. Executar
+
+Execute a classe principal do projeto através do Eclipse:
+
+```text
+Run As
+→ Java Application
+```
+
+---
+
+## 💾 Arquivo de dados
+
+O sistema utiliza o arquivo:
+
+```text
+dados.dat
+```
+
+Esse arquivo contém os hóspedes cadastrados através da serialização de objetos Java.
+
+O arquivo é criado/atualizado automaticamente pelo sistema.
+
+### ⚠️ Importante
+
+O arquivo `dados.dat` não deve ser editado manualmente.
+
+Caso o arquivo seja removido, o sistema poderá iniciar com uma lista vazia de hóspedes.
+
+---
+
+## 🔄 Fluxo da aplicação
+
+O funcionamento básico do sistema segue o seguinte fluxo:
+
+```text
+Usuário
+   │
+   ▼
+┌─────────────┐
+│    View     │
+│  Java Swing │
+└──────┬──────┘
+       │
+       ▼
+┌─────────────┐
+│ Controller  │
+│             │
+│ Validação   │
+│ Regras      │
+│ Operações   │
+└──────┬──────┘
+       │
+       ▼
+┌─────────────┐
+│    Model    │
+│   Hospede   │
+└──────┬──────┘
+       │
+       ▼
+┌─────────────┐
+│     DAO     │
+│             │
+│  dados.dat  │
+└─────────────┘
+```
+
+---
+
+## 📁 Estrutura do projeto
+
+```text
+Projeto/
+│
+├── src/
+│   │
+│   ├── modelo/
+│   │   └── Hospede.java
+│   │
+│   ├── controle/
+│   │   ├── HospedeController.java
+│   │   └── HospedeDAO.java
+│   │
+│   └── visao/
+│       ├── Janela.java
+│       └── JanelaAlterarHospede.java
+│
+├── dados.dat
+│
+└── README.md
+```
+
+> A localização física do `dados.dat` pode variar de acordo com a forma como o projeto é executado no ambiente Java/Eclipse.
+
+---
+
+## 🔐 Validações
+
+Antes de um hóspede ser cadastrado ou alterado, o sistema verifica os dados fornecidos.
+
+Exemplos:
+
+```text
+Nome vazio
+        ↓
+   Erro de validação
+```
+
+```text
+Data inválida
+        ↓
+   Erro de validação
+```
+
+```text
+Número do quarto inválido
+        ↓
+   Erro de validação
+```
+
+```text
+E-mail inválido
+        ↓
+   Erro de validação
+```
+
+Quando ocorre uma falha, os dados não são gravados.
+
+No cadastro, os campos também não são limpos caso o hóspede não tenha sido adicionado com sucesso.
+
+---
+
+## 🎯 Objetivo acadêmico
+
+O projeto foi desenvolvido para aplicar conceitos de programação orientada a objetos e desenvolvimento de aplicações desktop em Java, incluindo:
+
+* Classes e objetos
+* Encapsulamento
+* ArrayList
+* Serialização
+* Manipulação de arquivos
+* Tratamento de exceções
+* Interfaces gráficas com Swing
+* Separação de responsabilidades
+* Padrão arquitetural MVC
+* Validação de dados
+* Manipulação de datas com `LocalDate`
+
+---
+
+## 📌 Observações
+
+* O projeto utiliza **Java 11**.
+* Os dados são armazenados localmente.
+* Não é utilizado banco de dados relacional.
+* A persistência é feita através de serialização Java.
+* A interface gráfica é construída com Swing.
+* O sistema foi estruturado buscando separar interface, regras de negócio, modelo e persistência.
+
+---
+
+## 👨‍💻 Desenvolvimento
+
+Projeto desenvolvido em Java para gerenciamento de hóspedes.
+
+**AUTOR:** Arthur de França Schoening
+**Linguagem:** Java 11
+**Interface:** Java Swing
+**Arquitetura:** MVC
+**Persistência:** Java Serialization
